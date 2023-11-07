@@ -8,6 +8,6 @@ func main() {
 	fmt.Scan(&x)
 	fmt.Print("输入第二个值：")
 	fmt.Scan(&y)
-	z = x + y + 13
+	z = x + y
 	fmt.Println(z)
 }
