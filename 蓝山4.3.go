@@ -113,7 +113,7 @@ func main() {
 		fmt.Println("打开文件：", file.Name())
 	}
 	// 打开文件（使用 OpenFile）
-	anotherFile, err := os.OpenFile("anotherfile.txt", os.O_CREATE|os.O_WRONLY, 0644)
+	anotherFile, err := os.OpenFile("anotherfile.txt", os.O_CREATE|os.O_RDWR, 0644)
 	if err != nil {
 		fmt.Println("打开文件出错:", err)
 	} else {
