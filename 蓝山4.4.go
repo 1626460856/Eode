@@ -19,7 +19,20 @@ import (
 //tyoe Writer interface{
 //    Write(p []byte)(n int,err error)
 //}
+//还有两个接口分别是
 
+//type Closer interface {
+	//Close() error
+//}
+
+//type Seeker interface {
+	//Seek(offset int64, whence int) (int64, error)
+//}
+//Closer 表示可以关闭的对象，Close 方法用于关闭对象，释放资源
+//Seeker 表示可以随机读取的对象，Seeker 方法将当前读写位置设置为偏移量 offset 字节之后的位置，whence 可以使 0、1、2
+//0：表示相对于文件起始位置，offset 必须为非负数
+//1：表示相对于当前位置，offset 可以为负数
+//2：表示相对于文件结尾，offset 可以为负数
 //type ReaderAt interface {
 //    ReadAt(p []byte, off int64) (n int, err error)     // 从指定位置读取
 //}
