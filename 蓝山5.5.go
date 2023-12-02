@@ -76,8 +76,8 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 	for len(mymap) < 100 {
 
-		go Get(mymap, rand.Intn(10))
-		go Put(mymap, rand.Intn(10), rand.Intn(10))
+		go Get(mymap, rand.Intn(100))
+		go Put(mymap, rand.Intn(100), rand.Intn(100))
 	}
 	select {}
 
