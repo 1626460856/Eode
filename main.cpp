@@ -4,7 +4,7 @@ using namespace std;
 #include<iomanip>
 #include <string>
 #include <ctime>
-#include <chrono>//Õâ¸öº¯Êı¿ÉÒÔ¼ÇÂ¼½»Ò×Ê±¼ä
+#include <chrono>//è¿™ä¸ªå‡½æ•°å¯ä»¥è®°å½•äº¤æ˜“æ—¶é—´
 
 struct shoppingcar {
 	int id;
@@ -17,26 +17,26 @@ struct goods {
 	int id;
 	string name;
 	double price;
-	double trueprice;//ÎÒ°ÑÕâ¸öÁ¿ÉèÖÃÎªÁË½ø»õ¼Û¸ñ£¬ÎªºóÃæ×öÕËµ¥×ö×¼±¸
+	double trueprice;//æˆ‘æŠŠè¿™ä¸ªé‡è®¾ç½®ä¸ºäº†è¿›è´§ä»·æ ¼ï¼Œä¸ºåé¢åšè´¦å•åšå‡†å¤‡
 	int num;
 	struct goods* next;
 };
-goods goodsbase[20];//´´½¨È«¾ÖÉÌÆ·²Ö¿â£¬ÈİÁ¿Îª20¼ş
+goods goodsbase[20];//åˆ›å»ºå…¨å±€å•†å“ä»“åº“ï¼Œå®¹é‡ä¸º20ä»¶
 struct user {
-	string id;//ÕËºÅ
-	string key;//ÃÜÂë
-	string identity;//Éí·İ
+	string id;//è´¦å·
+	string key;//å¯†ç 
+	string identity;//èº«ä»½
 };
-user userbase[20];//´´½¨ÓÃ»§¿â£¬ÈİÁ¿Îª20¸ö
+user userbase[20];//åˆ›å»ºç”¨æˆ·åº“ï¼Œå®¹é‡ä¸º20ä¸ª
 struct records {
-	string id;//½»Ò×ÕËºÅ
-	string name;//½»Ò×ÉÌÆ·
-	int num;//½»Ò×ÊıÁ¿
+	string id;//äº¤æ˜“è´¦å·
+	string name;//äº¤æ˜“å•†å“
+	int num;//äº¤æ˜“æ•°é‡
 	string time;
-	double money;//¶ÔÉÌµêµÄÓ°Ïì½ğ¶î
+	double money;//å¯¹å•†åº—çš„å½±å“é‡‘é¢
 };
-records recordsbase[100];//´´½¨½»»¥¼ÇÂ¼¿â£¬ÈİÁ¿Îª100´Î
-double money;//´´½¨ÉÌµêµÄ×Ü½ğ¶î¿â
+records recordsbase[100];//åˆ›å»ºäº¤äº’è®°å½•åº“ï¼Œå®¹é‡ä¸º100æ¬¡
+double money;//åˆ›å»ºå•†åº—çš„æ€»é‡‘é¢åº“
 void first_show_goods();
 void show_goods();
 void add_goods(string id);
@@ -51,7 +51,7 @@ void main() {
 	first_show_goods();
 	for (;;) {
 		int x;
-		cout << "µÇÂ¼ÊäÈë1,ÍË³öÊäÈë0,´´½¨ÕËºÅÊäÈë2,ÊäÈë3¹Ø±ÕÉÌµêÆ½Ì¨" << endl;
+		cout << "ç™»å½•è¾“å…¥1,é€€å‡ºè¾“å…¥0,åˆ›å»ºè´¦å·è¾“å…¥2,è¾“å…¥3å…³é—­å•†åº—å¹³å°" << endl;
 		cin >> x;
 		switch (x)
 		{
@@ -77,19 +77,19 @@ void main() {
 	system("pause");
 }
 
-void first_show_goods() {//ÉÌÆ·³ÂÁĞ,²¢ÇÒ½«ÉÌÆ·²Ö¿â³õÊ¼»¯
+void first_show_goods() {//å•†å“é™ˆåˆ—,å¹¶ä¸”å°†å•†å“ä»“åº“åˆå§‹åŒ–
 
 	struct goods goods1, goods2, goods3, goods4, goods5, goods6, * head, * p;
-	goods1.id = 101; goods1.name = "ÎÀÁúÀ±Ìõ"; goods1.price = 2.00; goods1.num = 100;
-	goods2.id = 102; goods2.name = "Íú×ĞÅ£ÄÌ"; goods2.price = 5.00; goods2.num = 210;
-	goods3.id = 103; goods3.name = "°ÙÊÀ¿ÉÀÖ"; goods3.price = 3.00; goods3.num = 110;
-	goods4.id = 104; goods4.name = "ÀÖÊÂÊíÆ¬"; goods4.price = 6.00; goods4.num = 120;
-	goods5.id = 105; goods5.name = "ÃÀÄê´ï  "; goods5.price = 3.50; goods5.num = 130;
-	goods6.id = 107; goods6.name = "Ï´ÒÂÒº  "; goods6.price = 23.00; goods6.num = 150;
+	goods1.id = 101; goods1.name = "å«é¾™è¾£æ¡"; goods1.price = 2.00; goods1.num = 100;
+	goods2.id = 102; goods2.name = "æ—ºä»”ç‰›å¥¶"; goods2.price = 5.00; goods2.num = 210;
+	goods3.id = 103; goods3.name = "ç™¾ä¸–å¯ä¹"; goods3.price = 3.00; goods3.num = 110;
+	goods4.id = 104; goods4.name = "ä¹äº‹è–¯ç‰‡"; goods4.price = 6.00; goods4.num = 120;
+	goods5.id = 105; goods5.name = "ç¾å¹´è¾¾  "; goods5.price = 3.50; goods5.num = 130;
+	goods6.id = 106; goods6.name = "æ´—è¡£æ¶²  "; goods6.price = 23.00; goods6.num = 150;
 	cout << "****************************************************************" << endl;
 	cout << endl;
-	cout << setw(23) << internal << "ÉÌÆ·±êºÅ" << "  " << "ÉÌÆ·Ãû" << "    " << "¼Û¸ñ" << "  " << "Ê£Óà¿â´æ" << endl;
-	//ÀûÓÃÁ´±íÁĞ³öÉÌÆ·¡£ 
+	cout << setw(23) << internal << "å•†å“æ ‡å·" << "  " << "å•†å“å" << "    " << "ä»·æ ¼" << "  " << "å‰©ä½™åº“å­˜" << endl;
+	//åˆ©ç”¨é“¾è¡¨åˆ—å‡ºå•†å“ã€‚ 
 	head = &goods1;
 	goods1.next = &goods2;
 	goods2.next = &goods3;
@@ -97,29 +97,29 @@ void first_show_goods() {//ÉÌÆ·³ÂÁĞ,²¢ÇÒ½«ÉÌÆ·²Ö¿â³õÊ¼»¯
 	goods4.next = &goods5;
 	goods5.next = &goods6;
 	goods6.next = NULL;
-	p = head;//ÎÒ¾õµÃÕâÀïÓĞÒ»¸ö¾ÖÏŞ£¬Ã¿´Î¶¼ÊÇ°ÑÕû¸öÉÌÆ·µÄÈ«²¿ĞÅÏ¢Êä³öÁË£¬µ«ÊÇÏÔÈ»½ø¼ÛÊÇÃ»±ØÒªÕ¹Ê¾³öÀ´µÄ£¬ËùÒÔºóÃæÎÒµ¥¶ÀĞ´ÁËÒ»¸öÕ¹Ê¾º¯Êı
-	int i = 0;//´´½¨¾Ö²¿±äÁ¿×÷ÎªÒ»´ÎË÷Òı
+	p = head;//æˆ‘è§‰å¾—è¿™é‡Œæœ‰ä¸€ä¸ªå±€é™ï¼Œæ¯æ¬¡éƒ½æ˜¯æŠŠæ•´ä¸ªå•†å“çš„å…¨éƒ¨ä¿¡æ¯è¾“å‡ºäº†ï¼Œä½†æ˜¯æ˜¾ç„¶è¿›ä»·æ˜¯æ²¡å¿…è¦å±•ç¤ºå‡ºæ¥çš„ï¼Œæ‰€ä»¥åé¢æˆ‘å•ç‹¬å†™äº†ä¸€ä¸ªå±•ç¤ºå‡½æ•°
+	int i = 0;//åˆ›å»ºå±€éƒ¨å˜é‡ä½œä¸ºä¸€æ¬¡ç´¢å¼•
 	while (p != NULL)
-	{   //½«µ¥¸öÉÌÆ·µÄĞÅÏ¢ÌîÈëÉÌÆ·²Ö¿â£¬³õÊ¼»¯²Ö¿â
+	{   //å°†å•ä¸ªå•†å“çš„ä¿¡æ¯å¡«å…¥å•†å“ä»“åº“ï¼Œåˆå§‹åŒ–ä»“åº“
 		goodsbase[i].id = p->id;
 		goodsbase[i].name = p->name;
 		goodsbase[i].price = p->price;
-		goodsbase[i].trueprice = p->price * 0.8;//³õÊ¼µÄÒ»Åú½ø»õ¼ÛÉèÖÃÎª¶¨¼ÛµÄ0.8
+		goodsbase[i].trueprice = p->price * 0.8;//åˆå§‹çš„ä¸€æ‰¹è¿›è´§ä»·è®¾ç½®ä¸ºå®šä»·çš„0.8
 		goodsbase[i].num = p->num;
-		//Êä³öµ¥¸öÉÌÆ·½á¹¹Ìå
+		//è¾“å‡ºå•ä¸ªå•†å“ç»“æ„ä½“
 		cout << setw(23) << internal << p->id << "  " << p->name << "  " << fixed << setprecision(2) << p->price * 1.0 << "  " << p->num << endl;
-		//Á´±íµ½ÏÂÒ»¸ö
+		//é“¾è¡¨åˆ°ä¸‹ä¸€ä¸ª
 		p = p->next;
-		//¾Ö²¿Ë÷ÒıiÒ²¼Ó1
+		//å±€éƒ¨ç´¢å¼•iä¹ŸåŠ 1
 		i++;
 	}
 	cout << endl;
 	cout << "****************************************************************" << endl;
 }
-void show_goods() {//µ¥´Î³ÂÁĞÉÌÆ·²Ö¿â
+void show_goods() {//å•æ¬¡é™ˆåˆ—å•†å“ä»“åº“
 	cout << "****************************************************************" << endl;
 	cout << endl;
-	cout << setw(23) << internal << "ÉÌÆ·±êºÅ" << "  " << "ÉÌÆ·Ãû" << "    " << "¼Û¸ñ" << "  " << "Ê£Óà¿â´æ" << endl;
+	cout << setw(23) << internal << "å•†å“æ ‡å·" << "  " << "å•†å“å" << "    " << "ä»·æ ¼" << "  " << "å‰©ä½™åº“å­˜" << endl;
 	for (int i = 0; i < 20; i++) {
 		if (goodsbase[i].name != "") {
 			cout << setw(23) << internal << goodsbase[i].id << "  " << goodsbase[i].name << "  " << fixed << setprecision(2) << goodsbase[i].price * 1.0 << "  " << goodsbase[i].num << endl;
@@ -128,22 +128,22 @@ void show_goods() {//µ¥´Î³ÂÁĞÉÌÆ·²Ö¿â
 	cout << endl;
 	cout << "****************************************************************" << endl;
 }
-void add_goods(string id) {//µ¥´Î½ø»õ
-	cout << endl << "ÇëÊäÈëÉÌÆ·Ãû³Æ" << endl;
+void add_goods(string id) {//å•æ¬¡è¿›è´§
+	cout << endl << "è¯·è¾“å…¥å•†å“åç§°" << endl;
 	string name;
 	cin >> name;
-	cout << endl << "ÇëÊäÈëÉÌÆ·¶¨¼Û" << endl;
+	cout << endl << "è¯·è¾“å…¥å•†å“å®šä»·" << endl;
 	double price;
 	cin >> price;
-	cout << endl << "ÇëÊäÈëÉÌÆ·½ø¼Ûµ¥¼Û" << endl;
+	cout << endl << "è¯·è¾“å…¥å•†å“è¿›ä»·å•ä»·" << endl;
 	double trueprice;
 	cin >> trueprice;
-	cout << endl << "ÇëÊäÈëÉÌÆ·ÊıÁ¿" << endl;
+	cout << endl << "è¯·è¾“å…¥å•†å“æ•°é‡" << endl;
 	int num;
 	cin >> num;
 	for (int i = 0; i <= 20; i++) {
 		if (i == 20) {
-			cout << "ÉÌÆ·²Ö¿âÒÑÂú" << endl;
+			cout << "å•†å“ä»“åº“å·²æ»¡" << endl;
 			break;
 		}
 		if (i < 20 && goodsbase[i].name == "") {
@@ -152,8 +152,8 @@ void add_goods(string id) {//µ¥´Î½ø»õ
 			goodsbase[i].price = price;
 			goodsbase[i].trueprice = trueprice;
 			goodsbase[i].num = num;
-			money -= trueprice * num;//×Ü½ğ¶îÖ§³ö
-			cout << "½ø»õ³É¹¦£¬Ö§³ö£º" << trueprice * num << endl;
+			money -= trueprice * num;//æ€»é‡‘é¢æ”¯å‡º
+			cout << "è¿›è´§æˆåŠŸï¼Œæ”¯å‡ºï¼š" << trueprice * num << endl;
 			for (int j = 0; j <= 100; j++) {
 				if (recordsbase[j].name == "") {
 					recordsbase[j].id = id;
@@ -173,8 +173,8 @@ void add_goods(string id) {//µ¥´Î½ø»õ
 		}
 		if (i < 20 && goodsbase[i].name == name) {
 			goodsbase[i].num += num;
-			money -= trueprice * num;//×Ü½ğ¶îÖ§³ö
-			cout << "½ø»õ³É¹¦£¬Ö§³ö£º" << trueprice * num << endl;
+			money -= trueprice * num;//æ€»é‡‘é¢æ”¯å‡º
+			cout << "è¿›è´§æˆåŠŸï¼Œæ”¯å‡ºï¼š" << trueprice * num << endl;
 			for (int j = 0; j <= 100; j++) {
 				if (recordsbase[j].name == "") {
 					recordsbase[j].id = id;
@@ -194,68 +194,68 @@ void add_goods(string id) {//µ¥´Î½ø»õ
 		}
 	}
 }
-void first_user_base() {//½«ÓÃ»§¿â³õÊ¼»¯
-	//Ê¾Àı¹ºÎïÕß
+void first_user_base() {//å°†ç”¨æˆ·åº“åˆå§‹åŒ–
+	//ç¤ºä¾‹è´­ç‰©è€…
 	userbase[0].id = "123456";
 	userbase[0].key = "123456";
 	userbase[0].identity = "shopper";
-	//Ê¾ÀıÀÏ°å
+	//ç¤ºä¾‹è€æ¿
 	userbase[1].id = "654321";
 	userbase[1].key = "654321";
 	userbase[1].identity = "boss";
 }
-void add_user_base() {//µ¥´ÎÌí¼ÓÓÃ»§µ½ÓÃ»§¿â
-	cout << endl << "ÇëÊäÈëÄãÌí¼ÓµÄÉí·İ£ºboss»òÕßshopper" << endl;
+void add_user_base() {//å•æ¬¡æ·»åŠ ç”¨æˆ·åˆ°ç”¨æˆ·åº“
+	cout << endl << "è¯·è¾“å…¥ä½ æ·»åŠ çš„èº«ä»½ï¼šbossæˆ–è€…shopper" << endl;
 	string identity;
 	cin >> identity;
 	if (identity == "boss" || identity == "shopper") {
-		cout << endl << "ÇëÊäÈëÄãµÄÕËºÅ" << endl;
+		cout << endl << "è¯·è¾“å…¥ä½ çš„è´¦å·" << endl;
 		string id;
 		cin >> id;
-		cout << endl << "ÇëÊäÈëÄãµÄÃÜÂë" << endl;
+		cout << endl << "è¯·è¾“å…¥ä½ çš„å¯†ç " << endl;
 		string key;
 		cin >> key;
 		for (int i = 0; i <= 20; i++) {
 			if (i == 20) {
-				cout << "ÓÃ»§¿âÒÑÂú" << endl;
+				cout << "ç”¨æˆ·åº“å·²æ»¡" << endl;
 				break;
 			}
 			if (i < 20 && userbase[i].id == "") {
 				userbase[i].id = id;
 				userbase[i].key = key;
 				userbase[i].identity = identity;
-				cout << "´´½¨³É¹¦" << endl;
+				cout << "åˆ›å»ºæˆåŠŸ" << endl;
 				break;
 			}
 		}
 	}
 	else {
-		cout << "´´½¨Éí·İÊäÈë´íÎó" << endl;
+		cout << "åˆ›å»ºèº«ä»½è¾“å…¥é”™è¯¯" << endl;
 	}
 }
 void buy_goods(string id) {
-	int n = 0;//n×÷Îª¶¯Ì¬Êı×éµÄµ¥´Î²Ù×÷Ë÷Òı
+	int n = 0;//nä½œä¸ºåŠ¨æ€æ•°ç»„çš„å•æ¬¡æ“ä½œç´¢å¼•
 	goods* buycar = new goods[10];
 starbuy:
 	show_goods();
-	cout << "ÇëÊäÈëÄãÏë¹ºÂòÉÌÆ·µÄ±êºÅ,Äã»¹¿ÉÒÔ½øĞĞ" << 10 - n << "´ÎÌôÑ¡¹ºÂò" << endl;
+	cout << "è¯·è¾“å…¥ä½ æƒ³è´­ä¹°å•†å“çš„æ ‡å·,ä½ è¿˜å¯ä»¥è¿›è¡Œ" << 10 - n << "æ¬¡æŒ‘é€‰è´­ä¹°" << endl;
 	int good_id;
 	cin >> good_id;
-	cout << "ÇëÊäÈëÄãÏë¹ºÂòÉÌÆ·µÄÊıÁ¿" << endl;
+	cout << "è¯·è¾“å…¥ä½ æƒ³è´­ä¹°å•†å“çš„æ•°é‡" << endl;
 	int num;
 	cin >> num;
 	buycar[n].id = good_id;
 	for (int i = 0; i < 20; i++) {
 		if (good_id == goodsbase[i].id) {
 			if (num > goodsbase[i].num) {
-				cout << "ÉÌÆ·ÊıÁ¿²»×ã" << endl;
+				cout << "å•†å“æ•°é‡ä¸è¶³" << endl;
 				break;
 			}
 			buycar[n].name = goodsbase[i].name;
 			buycar[n].num = num;
 			buycar[n].price = goodsbase[i].price;
 			buycar[n].trueprice = goodsbase[i].trueprice;
-			goodsbase[i].num -= num;//ÉÌÆ·ÊıÁ¿±»ÏûºÄ
+			goodsbase[i].num -= num;//å•†å“æ•°é‡è¢«æ¶ˆè€—
 			for (int j = 0; j < 100; j++) {
 				if (recordsbase[j].name == "") {
 					recordsbase[j].money = goodsbase[i].price * num;
@@ -274,15 +274,15 @@ starbuy:
 			break;
 		}
 	}
-	cout << "ÊÇ·ñ¼ÌĞø¹ºÂò£¿¼ÌĞø¹ºÂòÊäÈë¡°1¡±£¬½áÊø¹ºÂòÊäÈë¡°0¡±" << endl;
+	cout << "æ˜¯å¦ç»§ç»­è´­ä¹°ï¼Ÿç»§ç»­è´­ä¹°è¾“å…¥â€œ1â€ï¼Œç»“æŸè´­ä¹°è¾“å…¥â€œ0â€" << endl;
 	int k;
 	cin >> k;
 	switch (k) {
 	case 0: {
-		cout << "ÒÔÏÂÊÇÄã×ÜµÄ¹ºÂòµÄÉÌÆ·£º" << endl;
+		cout << "ä»¥ä¸‹æ˜¯ä½ æ€»çš„è´­ä¹°çš„å•†å“ï¼š" << endl;
 		cout << "****************************************************************" << endl;
 		cout << endl;
-		cout << setw(23) << internal << "ÉÌÆ·±êºÅ" << "  " << "ÉÌÆ·Ãû" << "    " << "¼Û¸ñ" << "  " << "¹ºÂòÊıÁ¿" << endl;
+		cout << setw(23) << internal << "å•†å“æ ‡å·" << "  " << "å•†å“å" << "    " << "ä»·æ ¼" << "  " << "è´­ä¹°æ•°é‡" << endl;
 		double all_buy_money = 0;
 		for (int i = 0; i < 10; i++) {
 			if (buycar[i].name != "") {
@@ -292,9 +292,9 @@ starbuy:
 			}
 		}
 		cout << endl;
-		cout << "×Ü¼Æ£º" << all_buy_money << "Ôª" << endl;
+		cout << "æ€»è®¡ï¼š" << all_buy_money << "å…ƒ" << endl;
 		cout << "****************************************************************" << endl;
-		delete[] buycar; // ÊÍ·ÅÄÚ´æ
+		delete[] buycar; // é‡Šæ”¾å†…å­˜
 		break;
 	}
 	case 1: {
@@ -308,7 +308,7 @@ starbuy:
 void show_recordsbase() {
 	cout << "****************************************************************" << endl;
 	cout << endl;
-	cout << setw(23) << internal << "½»Ò×ÕËºÅ" << "  " << "ÉÌÆ·Ãû" << "  " << "½»Ò×ÊıÁ¿" << "  " << "½»Ò×½ğ¶î" << "  " << "½»Ò×Ê±¼ä" << endl;
+	cout << setw(23) << internal << "äº¤æ˜“è´¦å·" << "  " << "å•†å“å" << "  " << "äº¤æ˜“æ•°é‡" << "  " << "äº¤æ˜“é‡‘é¢" << "  " << "äº¤æ˜“æ—¶é—´" << endl;
 	for (int i = 0; i < 20; i++) {
 		if (recordsbase[i].name != "") {
 			cout << setw(23) << internal << recordsbase[i].id << "  " << recordsbase[i].name << "  " << recordsbase[i].num;
@@ -319,20 +319,20 @@ void show_recordsbase() {
 	cout << "****************************************************************" << endl;
 }
 void login() {
-	cout << "ÇëÊäÈëÄúµÄÕËºÅ" << endl;
+	cout << "è¯·è¾“å…¥æ‚¨çš„è´¦å·" << endl;
 	string id;
 	cin >> id;
-	cout << "ÇëÊäÈëÃÜÂë" << endl;
+	cout << "è¯·è¾“å…¥å¯†ç " << endl;
 	string key;
 	cin >> key;
 	for (int i = 0; i < 20; i++) {
 		if (userbase[i].id == id && userbase[i].key == key) {
 			if (userbase[i].identity == "boss") {
-				cout << endl << "ÊäÈë0ÍË³ö" << endl;
-				cout << "ÊäÈë1²éÑ¯ÉÌµêÓà¶î" << endl;
-				cout << "ÊäÈë2²éÑ¯ÉÌµêÁ÷Ë®ÕËÄ¿" << endl;
-				cout << "ÊäÈë3²éÑ¯ÉÌµê³ÂÁĞ»õÎï" << endl;
-				cout << "ÊäÈë4ÎªÉÌµê½ø»õ" << endl;
+				cout << endl << "è¾“å…¥0é€€å‡º" << endl;
+				cout << "è¾“å…¥1æŸ¥è¯¢å•†åº—ä½™é¢" << endl;
+				cout << "è¾“å…¥2æŸ¥è¯¢å•†åº—æµæ°´è´¦ç›®" << endl;
+				cout << "è¾“å…¥3æŸ¥è¯¢å•†åº—é™ˆåˆ—è´§ç‰©" << endl;
+				cout << "è¾“å…¥4ä¸ºå•†åº—è¿›è´§" << endl;
 				int k;
 				cin >> k;
 				switch (k)
@@ -341,7 +341,7 @@ void login() {
 					break;
 				}
 				case 1: {
-					cout << "Ä¿Ç°ÉÌµê×ÜÓà¶îÎª£º" << money << endl;
+					cout << "ç›®å‰å•†åº—æ€»ä½™é¢ä¸ºï¼š" << money << endl;
 					break;
 				}
 				case 2: {
@@ -360,9 +360,9 @@ void login() {
 				}
 			}
 			if (userbase[i].identity == "shopper") {
-				cout << "»¶Ó­¹âÁÙÍºÍ·ÉÌµê?" << endl;
-				cout << endl << "ÊäÈë0ÍË³ö" << endl;
-				cout << "ÊäÈë1¹ºÎï" << endl;
+				cout << "æ¬¢è¿å…‰ä¸´ç§ƒå¤´å•†åº—?" << endl;
+				cout << endl << "è¾“å…¥0é€€å‡º" << endl;
+				cout << "è¾“å…¥1è´­ç‰©" << endl;
 				int k;
 				cin >> k;
 				switch (k) {
