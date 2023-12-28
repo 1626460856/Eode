@@ -6,13 +6,7 @@ using namespace std;
 #include <ctime>
 #include <chrono>//这个函数可以记录交易时间
 
-struct shoppingcar {
-	int id;
-	string name;
-	double price;
-	int num;
-	struct shoppingcar* next;
-};
+
 struct goods {
 	int id;
 	string name;
