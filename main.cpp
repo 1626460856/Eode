@@ -197,7 +197,7 @@ void first_user_base(){//将用户库初始化
 	userbase[0].identity = "shopper";
 	//示例老板
 	userbase[1].id = "654321";
-	userbase[1].id = "654321";
+	userbase[1].key = "654321";
 	userbase[1].identity = "boss";
 }
 void add_user_base(){//单次添加用户到用户库
@@ -243,6 +243,10 @@ starbuy:
 	buycar[n].id = good_id;
 	for (int i = 0; i < 20; i++){
 		if (good_id == goodsbase[i].id){
+			if (num>goodsbase[i].num){
+				cout << "商品数量不足" << endl;
+				break;
+			}
 			buycar[n].name = goodsbase[i].name;
 			buycar[n].num = num;
 			buycar[n].price = goodsbase[i].price;
@@ -301,7 +305,7 @@ void show_recordsbase(){
 	cout << setw(23) << internal << "交易账号" << "  " << "商品名"  << "  " << "交易数量" <<"  "<<"交易金额" <<"  "<<"交易时间"<<endl;
 	for (int i = 0; i < 20; i++){
 		if (recordsbase[i].name != ""){
-			cout << setw(23) << internal << recordsbase[i].id<< "  " << recordsbase[i].name << "  " << fixed << setprecision(2) << goodsbase[i].price*1.0 << "  " << goodsbase[i].num ;
+			cout << setw(23) << internal << recordsbase[i].id<< "  " << recordsbase[i].name << "  " << recordsbase[i].num ;
 			cout << "  " << recordsbase[i].money <<"  "<<recordsbase[i].time<< endl;
 		}
 	}
