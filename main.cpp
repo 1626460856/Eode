@@ -1,67 +1,67 @@
 #include"main.h"
 #include<iostream>
 using namespace std;
-#include<iomanip>
-#include <string>
+#include<iomanip>//使得输出更美观
+#include <string>//采用string数据类型记录字符串
 #include <ctime>
-#include <chrono>//这个函数可以记录交易时间
+#include <chrono>//这两个库可以记录交易时间
 
 
-struct goods {
-	int id;
-	string name;
-	double price;
-	double trueprice;//我把这个量设置为了进货价格，为后面做账单做准备
-	int num;
-	struct goods* next;
+struct goods {//这是定义单个商品的数据类型
+	int id;//商品的编号，在后续添加商品的时候通过访问原来的商品的最后一个编号id，将新添加的商品编号设置为id+1，这样就使得编号有序，而且不用手动录入
+	string name;//商品的名称
+	double price;//商品的价格
+	double trueprice;//我把这个量设置为了进货价格，为后面做账单做准备，那么对于一个商店来说进一批商品那么就会减去trueprice*num的资金
+	int num;//数量
+	struct goods* next;//第一次填入初始商品的时候采用链表输出，后续没继续使用这个参数
 };
-goods goodsbase[20];//创建全局商品仓库，容量为20件
+goods goodsbase[20];//创建全局商品仓库，容量为20件商品
 struct user {
-	string id;//账号
-	string key;//密码
-	string identity;//身份
+	string id;//用户账号
+	string key;//用户密码
+	string identity;//用户身份，在登录界面验证了账号和密码之后根据是购物者还是老板两种身份提供不同的服务选项
 };
-user userbase[20];//创建用户库，容量为20个
-struct records {
+user userbase[20];//创建全局用户库，容量为20个
+struct records {//这是定义一次交易记录的数据类型
 	string id;//交易账号
 	string name;//交易商品
 	int num;//交易数量
-	string time;
+	string time;//交易时间
 	double money;//对商店的影响金额
 };
 records recordsbase[100];//创建交互记录库，容量为100次
 double money;//创建商店的总金额库
-void first_show_goods();
-void show_goods();
-void add_goods(string id);
-void buy_goods(string id);
-void first_user_base();
-void add_user_base();
-void show_recordsbase();
-void login();
+void first_show_goods();//第一次填入商品并且展示商品
+void show_goods();//展示商品库的所有商品
+void add_goods(string id);//添加商品
+void buy_goods(string id);//购买商品
+void first_user_base();//第一次初始化两个用户，一个老板一个购物者
+void add_user_base();//添加用户
+void show_recordsbase();//展示交互记录库的交易记录
+void login();//登录函数
 
 void main() {
-	first_user_base();
-	first_show_goods();
-	for (;;) {
+	first_user_base();//填入初始用户
+	first_show_goods();//填入并展示初始商品
+	for (;;) {//无限循环框架，在这个框架结束之前，全局数据库的内容将会保存，并可以进行使用
 		int x;
 		cout << "登录输入1,退出输入0,创建账号输入2,输入3关闭商店平台" << endl;
 		cin >> x;
 		switch (x)
 		{
-		case 0: {
+		case 0: {//仅退出当前的选择界面，回到最初始的界面
 			break;
 		}
 		case 1: {
-			login();
+			login();//转到登录函数
 			break;
 		}
 		case 2: {
-			add_user_base();
+			add_user_base();//转到新建用户函数
 			break;
 		}
 		case 3: {
-			return;
+			return;//结束整个main函数，即结束所有程序
 		}
 
 
