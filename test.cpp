@@ -5,17 +5,17 @@
 #include <vector>
 using namespace std;
 
-mutex mtx; // ÓÃÓÚ¿ØÖÆ¿ØÖÆÌ¨Êä³öµÄ»¥³âÁ¿
-char Ainto = 'W';//¼ÇÂ¼&×Ö·ûµÄ·½Ïò
-char Binto = 'I';//¼ÇÂ¼@×Ö·ûµÄ·½Ïò
-int A = 0;//¼ÇÂ¼&µÃ·Ö
-int B = 0;//¼ÇÂ¼@µÃ·Ö
-int x = 40; // &³õÊ¼X×ø±ê
-int y = 10; // &³õÊ¼Y×ø±ê
+mutex mtx; // ç”¨äºæ§åˆ¶æ§åˆ¶å°è¾“å‡ºçš„äº’æ–¥é‡
+char Ainto = 'W';//è®°å½•&å­—ç¬¦çš„æ–¹å‘
+char Binto = 'I';//è®°å½•@å­—ç¬¦çš„æ–¹å‘
+int A = 0;//è®°å½•&å¾—åˆ†
+int B = 0;//è®°å½•@å¾—åˆ†
+int x = 40; // &åˆå§‹Xåæ ‡
+int y = 10; // &åˆå§‹Yåæ ‡
 
-int i = 80; // @³õÊ¼X×ø±ê
-int j = 10; // @³õÊ¼Y×ø±ê
-// ¶¨Òåº¯Êı
+int i = 80; // @åˆå§‹Xåæ ‡
+int j = 10; // @åˆå§‹Yåæ ‡
+// å®šä¹‰å‡½æ•°
 void zeroXy(int x, int y) {
 	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos;
@@ -24,7 +24,7 @@ void zeroXy(int x, int y) {
 	SetConsoleCursorPosition(handle, pos);
 }
 
-// ¶¨ÒåA×Óµ¯Àà
+// å®šä¹‰Aå­å¼¹ç±»
 class ABullet {
 public:
 	int x, y;
@@ -49,7 +49,7 @@ public:
 		//mtx.unlock();
 	}
 };
-// ¶¨ÒåB×Óµ¯Àà
+// å®šä¹‰Bå­å¼¹ç±»
 class BBullet {
 public:
 	int i, j;
@@ -74,8 +74,8 @@ public:
 		//mtx.unlock();
 	}
 };
-vector<ABullet> bulletsA; // ´æ´¢AĞÍ×Óµ¯
-vector<BBullet> bulletsB; // ´æ´¢BĞÍ×Óµ¯
+vector<ABullet> bulletsA; // å­˜å‚¨Aå‹å­å¼¹
+vector<BBullet> bulletsB; // å­˜å‚¨Bå‹å­å¼¹
 
 void coutA(int x, int y, char Ainto){
 	zeroXy(x, y);
@@ -125,34 +125,34 @@ void cleanA(int x, int y){
 	zeroXy(x, y+1);
 	cout << " ";
 }
-// Ïß³Ìº¯Êı£ºÒÆ¶¯×Ö·û &
+// çº¿ç¨‹å‡½æ•°ï¼šç§»åŠ¨å­—ç¬¦ &
 void moveChar1(int &x, int &y) {
 	while (true) {
-		mtx.lock(); // Ëø¶¨»¥³âÁ¿£¬È·±£¿ØÖÆÌ¨Êä³ö²»±»´ò¶Ï
-		// Çå³ıÉÏÒ»¸öÎ»ÖÃµÄ×Ö·û
+		mtx.lock(); // é”å®šäº’æ–¥é‡ï¼Œç¡®ä¿æ§åˆ¶å°è¾“å‡ºä¸è¢«æ‰“æ–­
+		// æ¸…é™¤ä¸Šä¸€ä¸ªä½ç½®çš„å­—ç¬¦
 		cleanA(x, y);
 		
-		// ¸ù¾İ°´¼üµ÷Õû×ø±ê
+		// æ ¹æ®æŒ‰é”®è°ƒæ•´åæ ‡
 		if (GetAsyncKeyState('W') & 0x8000 && y > 2) { 
 			Ainto = 'W';
-			y--; }        // ÏòÉÏ
+			y--; }        // å‘ä¸Š
 		if (GetAsyncKeyState('S') & 0x8000 && y < 27){ 
 			Ainto = 'S';
-			y++; }       // ÏòÏÂ
+			y++; }       // å‘ä¸‹
 		if (GetAsyncKeyState('A') & 0x8000 && x > 16){ 
 			Ainto = 'A';
-			x--; }        // Ïò×ó
+			x--; }        // å‘å·¦
 		if (GetAsyncKeyState('D') & 0x8000 && x < 98){ 
 			Ainto = 'D';
-			x++; }       // ÏòÓÒ
+			x++; }       // å‘å³
 
-		// Êä³ö×Ö·ûµ½ĞÂÎ»ÖÃ
+		// è¾“å‡ºå­—ç¬¦åˆ°æ–°ä½ç½®
 		coutA(x, y, Ainto);
 		zeroXy(0, 0);
-		cout << "&·½»ı·Ö£º" << A;
-		mtx.unlock(); // ½âËø»¥³âÁ¿
+		cout << "&æ–¹ç§¯åˆ†ï¼š" << A;
+		mtx.unlock(); // è§£é”äº’æ–¥é‡
 
-		Sleep(50); // ¶ÌÔİĞİÃß£¬·ÀÖ¹CPUÕ¼ÓÃ¹ı¸ß
+		Sleep(50); // çŸ­æš‚ä¼‘çœ ï¼Œé˜²æ­¢CPUå ç”¨è¿‡é«˜
 	}
 }
 void coutB(int i, int j, char Binto){
@@ -203,34 +203,34 @@ void cleanB(int x, int y){
 	zeroXy(x, y + 1);
 	cout << " ";
 }
-// Ïß³Ìº¯Êı£ºÒÆ¶¯×Ö·û @
+// çº¿ç¨‹å‡½æ•°ï¼šç§»åŠ¨å­—ç¬¦ @
 void moveChar2(int &i, int &j) {
 	while (true) {
-		mtx.lock(); // Ëø¶¨»¥³âÁ¿£¬È·±£¿ØÖÆÌ¨Êä³ö²»±»´ò¶Ï
-		// Çå³ıÉÏÒ»¸öÎ»ÖÃµÄ×Ö·û
+		mtx.lock(); // é”å®šäº’æ–¥é‡ï¼Œç¡®ä¿æ§åˆ¶å°è¾“å‡ºä¸è¢«æ‰“æ–­
+		// æ¸…é™¤ä¸Šä¸€ä¸ªä½ç½®çš„å­—ç¬¦
 		cleanB(i, j);
 		
-		// ¸ù¾İ°´¼üµ÷Õû×ø±ê
+		// æ ¹æ®æŒ‰é”®è°ƒæ•´åæ ‡
 		if (GetAsyncKeyState('I') & 0x8000 && j > 2){
 			Binto = 'I';
-			j--; }        // ÏòÉÏ
+			j--; }        // å‘ä¸Š
 		if (GetAsyncKeyState('K') & 0x8000 && j < 27){ 
 			Binto = 'K';
-			j++; }       // ÏòÏÂ
+			j++; }       // å‘ä¸‹
 		if (GetAsyncKeyState('J') & 0x8000 && i > 16){
 			Binto = 'J';
-			i--; }        // Ïò×ó
+			i--; }        // å‘å·¦
 		if (GetAsyncKeyState('L') & 0x8000 && i < 98){
 			Binto = 'L';
-			i++; }       // ÏòÓÒ
+			i++; }       // å‘å³
 
-		// Êä³ö×Ö·ûµ½ĞÂÎ»ÖÃ
+		// è¾“å‡ºå­—ç¬¦åˆ°æ–°ä½ç½®
 		coutB(i, j, Binto);
 		zeroXy(105, 0);
-		cout << "@·½»ı·Ö£º" << B;
-		mtx.unlock(); // ½âËø»¥³âÁ¿
+		cout << "@æ–¹ç§¯åˆ†ï¼š" << B;
+		mtx.unlock(); // è§£é”äº’æ–¥é‡
 
-		Sleep(50); // ¶ÌÔİĞİÃß£¬·ÀÖ¹CPUÕ¼ÓÃ¹ı¸ß
+		Sleep(50); // çŸ­æš‚ä¼‘çœ ï¼Œé˜²æ­¢CPUå ç”¨è¿‡é«˜
 	}
 }
 void spawnBullets() {
@@ -243,7 +243,7 @@ void spawnBullets() {
 		Sleep(200);
 	}
 }
-void drawBorder(){//»æÖÆ#¿ò
+void drawBorder(){//ç»˜åˆ¶#æ¡†
 	int y = 0;
 	for (int x = 14; x <= 100; x++){
 		zeroXy(x, y);
@@ -363,32 +363,32 @@ void updateBBullets() {
 	}
 }
 int main() {
-	// Çå¿Õ¿ØÖÆÌ¨
+	// æ¸…ç©ºæ§åˆ¶å°
 	system("cls");
 	
-	drawBorder();//»æÖÆ#¿ò
-	// ÔÚ¿ØÖÆÌ¨²»Í¬Î»ÖÃÊä³öÎÄ±¾
+	drawBorder();//ç»˜åˆ¶#æ¡†
+	// åœ¨æ§åˆ¶å°ä¸åŒä½ç½®è¾“å‡ºæ–‡æœ¬
 	zeroXy(0, 0);
-	cout << "&·½»ı·Ö£º"<<A;
+	cout << "&æ–¹ç§¯åˆ†ï¼š"<<A;
 
 	zeroXy(105, 0);
-	cout << "@·½»ı·Ö£º"<<B;
+	cout << "@æ–¹ç§¯åˆ†ï¼š"<<B;
 
 	
 
-	// ³õÊ¼Î»ÖÃÊä³ö×Ö·û
+	// åˆå§‹ä½ç½®è¾“å‡ºå­—ç¬¦
 	zeroXy(x, y);
 	cout << "&";
 	zeroXy(i, j);
 	cout << "@";
 
-	// ´´½¨²¢Æô¶¯Ïß³Ì
+	// åˆ›å»ºå¹¶å¯åŠ¨çº¿ç¨‹
 	thread t1(moveChar1, ref(x), ref(y));
 	thread t2(moveChar2, ref(i), ref(j));
 	thread t3(spawnBullets);
 	thread t4(updateABullets);
 	thread t5(updateBBullets);
-	// µÈ´ıÏß³ÌÍê³É
+	// ç­‰å¾…çº¿ç¨‹å®Œæˆ
 	t1.join();
 	t2.join();
 	t3.join();
